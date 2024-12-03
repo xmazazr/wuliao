@@ -2,6 +2,7 @@
 #include <graphics.h>
 
 MOUSEMSG shubiao;
+int rcolor = 8, ucolor = 8, fcolor = 8, lcolor = 8, dcolor = 8, bcolor = 8;
 
 //定义魔方
 int r[9] = { 1,1,1,1,1,1,1,1,1 };
@@ -19,6 +20,22 @@ int ff[9] = { 3,3,3,3,3,3,3,3,3 };
 int ll[9] = { 4,4,4,4,4,4,4,4,4 };
 int dd[9] = { 5,5,5,5,5,5,5,5,5 };
 int bb[9] = { 6,6,6,6,6,6,6,6,6 };
+
+//定义储存魔方2222
+int rrr[9] = { 1,1,1,1,1,1,1,1,1 };
+int uuu[9] = { 2,2,2,2,2,2,2,2,2 };
+int fff[9] = { 3,3,3,3,3,3,3,3,3 };
+int lll[9] = { 4,4,4,4,4,4,4,4,4 };
+int ddd[9] = { 5,5,5,5,5,5,5,5,5 };
+int bbb[9] = { 6,6,6,6,6,6,6,6,6 };
+
+//定义储存魔方3333
+int rr1[9] = { -1,-1,-1,-1,1,-1,-1,-1,-1 };
+int uu1[9] = { -1,-1,-1,-1,2,-1,-1,-1,-1 };
+int ff1[9] = { -1,-1,-1,-1,3,-1,-1,-1,-1 };
+int ll1[9] = { -1,-1,-1,-1,4,-1,-1,-1,-1 };
+int dd1[9] = { -1,-1,-1,-1,5,-1,-1,-1,-1 };
+int bb1[9] = { -1,-1,-1,-1,6,-1,-1,-1,-1 };
 
 //旋转魔方一个面
 void hhh(int x[]) {
@@ -449,7 +466,7 @@ void huahua2(int x, int y, int z[]) {
 			setfillcolor(BLACK);
 		}
 		setlinestyle(PS_SOLID, 5);
-		POINT pts[] = { {x, y}, {x + 51, y-51}, {x + 51,y + 92},{x, y + 143} };
+		POINT pts[] = { {x, y}, {x + 51, y - 51}, {x + 51,y + 92},{x, y + 143} };
 		fillpolygon(pts, 4);
 		x += dx[i];
 		y += dy[i];
@@ -489,7 +506,7 @@ void hua666() {
 	setlinecolor(WHITE);
 }
 
-//绘图按钮
+//绘图界面1按钮
 void huahuahua() {
 	settextcolor(BLACK);
 	setbkmode(TRANSPARENT);
@@ -511,6 +528,17 @@ void huahuahua() {
 		"z","z'","z2",
 	    "重置魔方","一键打乱","撤销一步"};
 	int k = 0;
+	if (41 < shubiao.x && shubiao.x < 41 + 100 && 41 < shubiao.y && shubiao.y < 41 + 50) {
+		setfillcolor(RGB(GetRValue(getfillcolor()) * 195 / 255, GetGValue(getfillcolor()) * 195 / 255, GetBValue(getfillcolor()) * 195 / 255));
+		if (shubiao.uMsg == WM_LBUTTONDOWN) {
+			setlinecolor(RGB(195, 195, 195));
+			setfillcolor(RGB(GetRValue(getfillcolor()) * 110 / 255, GetGValue(getfillcolor()) * 110 / 255, GetBValue(getfillcolor()) * 110 / 255));
+		}
+	}
+	fillrectangle(41, 41, 41 + 100, 41 + 50);
+	outtextxy(41 + (100 - textwidth("返回")) / 2, 41 + (50 - textheight("返回")) / 2, "返回");
+	setfillcolor(WHITE);
+	setlinecolor(WHITE);
 	for (int i = 0;i < 9;i++) {
 		for (int j = 0;j < 3;j++,k++) {
 			if (x < shubiao.x && shubiao.x < x + 100 && y < shubiao.y && shubiao.y < y + 50) {
@@ -572,6 +600,218 @@ void huahuahua() {
 	outtextxy(x + (100 - textwidth(c[k])) / 2, y + (50 - textheight(c[k])) / 2, c[k]);
 }
 
+//绘图界面2按钮
+void hua2(){
+	rcolor = 8;
+	ucolor = 8;
+	fcolor = 8;
+	lcolor = 8;
+	dcolor = 8;
+	bcolor = 8;
+	settextcolor(BLACK);
+	setbkmode(TRANSPARENT);
+	settextstyle(50, 0, _T("Consolas"));
+	setfillcolor(WHITE);
+	setlinestyle(PS_SOLID, 5);
+	int x = 850, y = 41;
+	int dx[2] = { 180,-540 };
+	int dy[2] = { 0,72 };
+	char c[30][2] = { "x","y","z" };
+	char cc[9][2] = {"0", "1", "2", "3", "4", "5", "6", "7", "8"};
+	int k = 0;
+	if (41 < shubiao.x && shubiao.x < 41 + 100 && 41 < shubiao.y && shubiao.y < 41 + 50) {
+		setfillcolor(RGB(GetRValue(getfillcolor()) * 195 / 255, GetGValue(getfillcolor()) * 195 / 255, GetBValue(getfillcolor()) * 195 / 255));
+		if (shubiao.uMsg == WM_LBUTTONDOWN) {
+			setlinecolor(RGB(195, 195, 195));
+			setfillcolor(RGB(GetRValue(getfillcolor()) * 110 / 255, GetGValue(getfillcolor()) * 110 / 255, GetBValue(getfillcolor()) * 110 / 255));
+		}
+	}
+	fillrectangle(41, 41, 41 + 100, 41 + 50);
+	outtextxy(41 + (100 - textwidth("返回")) / 2, 41 + (50 - textheight("返回")) / 2, "返回");
+	setfillcolor(WHITE);
+	setlinecolor(WHITE);
+	for (int i = 0;i < 9;i++) {
+		if (r[i] == 1) {
+			rcolor--;
+		}
+		if (u[i] == 1) {
+			rcolor--;
+		}
+		if (f[i] == 1) {
+			rcolor--;
+		}
+		if (l[i] == 1) {
+			rcolor--;
+		}
+		if (d[i] == 1) {
+			rcolor--;
+		}
+		if (b[i] == 1) {
+			rcolor--;
+		}
+		if (r[i] == 2) {
+			ucolor--;
+		}
+		if (u[i] == 2) {
+			ucolor--;
+		}
+		if (f[i] == 2) {
+			ucolor--;
+		}
+		if (l[i] == 2) {
+			ucolor--;
+		}
+		if (d[i] == 2) {
+			ucolor--;
+		}
+		if (b[i] == 2) {
+			ucolor--;
+		}
+		if (r[i] == 3) {
+			fcolor--;
+		}
+		if (u[i] == 3) {
+			fcolor--;
+		}
+		if (f[i] == 3) {
+			fcolor--;
+		}
+		if (l[i] == 3) {
+			fcolor--;
+		}
+		if (d[i] == 3) {
+			fcolor--;
+		}
+		if (b[i] == 3) {
+			fcolor--;
+		}
+		if (r[i] == 4) {
+			lcolor--;
+		}
+		if (u[i] == 4) {
+			lcolor--;
+		}
+		if (f[i] == 4) {
+			lcolor--;
+		}
+		if (l[i] == 4) {
+			lcolor--;
+		}
+		if (d[i] == 4) {
+			lcolor--;
+		}
+		if (b[i] == 4) {
+			lcolor--;
+		}
+		if (r[i] == 5) {
+			dcolor--;
+		}
+		if (u[i] == 5) {
+			dcolor--;
+		}
+		if (f[i] == 5) {
+			dcolor--;
+		}
+		if (l[i] == 5) {
+			dcolor--;
+		}
+		if (d[i] == 5) {
+			dcolor--;
+		}
+		if (b[i] == 5) {
+			dcolor--;
+		}
+		if (r[i] == 6) {
+			bcolor--;
+		}
+		if (u[i] == 6) {
+			bcolor--;
+		}
+		if (f[i] == 6) {
+			bcolor--;
+		}
+		if (l[i] == 6) {
+			bcolor--;
+		}
+		if (d[i] == 6) {
+			bcolor--;
+		}
+		if (b[i] == 6) {
+			bcolor--;
+		}
+		if (i == 3) {
+			i++;
+		}
+	}
+	for (int i = 0;i < 4;i++) {
+		for (int j = 0;j < 3;j++, k++) {
+			setfillcolor(WHITE);
+			if (i == 1) {
+				if (j == 0) {
+					setfillcolor(RED);
+				}
+				else if (j == 1) {
+					setfillcolor(WHITE);
+				}
+				else if (j == 2) {
+					setfillcolor(GREEN);
+				}
+			}
+			else if (i == 2) {
+				if (j == 0) {
+					setfillcolor(RGB(245, 110, 12));
+				}
+				else if (j == 1) {
+					setfillcolor(YELLOW);
+				}
+				else if (j == 2) {
+					setfillcolor(BLUE);
+				}
+			}
+			if (x < shubiao.x && shubiao.x < x + 100 && y < shubiao.y && shubiao.y < y + 50) {
+				setfillcolor(RGB(GetRValue(getfillcolor())*195/255, GetGValue(getfillcolor()) * 195 / 255, GetBValue(getfillcolor()) * 195 / 255));
+				if (shubiao.uMsg == WM_LBUTTONDOWN) {
+					setlinecolor(RGB(195, 195, 195));
+					setfillcolor(RGB(GetRValue(getfillcolor()) * 110 / 255, GetGValue(getfillcolor()) * 110 / 255, GetBValue(getfillcolor()) * 110 / 255));
+				}
+			}
+			fillrectangle(x, y, x + 100, y + 50);
+			setlinecolor(WHITE);
+			if (i != 1 && i != 2) {
+				outtextxy(x + (100 - textwidth(c[k])) / 2, y + (50 - textheight(c[k])) / 2, c[k]);
+			}
+			else {
+				if (i == 1) {
+					if (j == 0) {
+						outtextxy(x + (100 - textwidth(cc[rcolor])) / 2, y + (50 - textheight(cc[rcolor])) / 2, cc[rcolor]);
+					}
+					else if (j == 1) {
+						outtextxy(x + (100 - textwidth(cc[ucolor])) / 2, y + (50 - textheight(cc[ucolor])) / 2, cc[ucolor]);
+					}
+					else if (j == 2) {
+						outtextxy(x + (100 - textwidth(cc[fcolor])) / 2, y + (50 - textheight(cc[fcolor])) / 2, cc[fcolor]);
+					}
+				}
+				else if (i == 2) {
+					if (j == 0) {
+						outtextxy(x + (100 - textwidth(cc[lcolor])) / 2, y + (50 - textheight(cc[lcolor])) / 2, cc[lcolor]);
+					}
+					else if (j == 1) {
+						outtextxy(x + (100 - textwidth(cc[dcolor])) / 2, y + (50 - textheight(cc[dcolor])) / 2, cc[dcolor]);
+					}
+					else if (j == 2) {
+						outtextxy(x + (100 - textwidth(cc[bcolor])) / 2, y + (50 - textheight(cc[bcolor])) / 2, cc[bcolor]);
+					}
+				}
+			}
+			x += dx[0];
+			y += dy[0];
+		}
+		x += dx[1];
+		y += dy[1];
+	}
+}
+
 //判断是否还原
 int panduanhuanyuan() {
 	int k = 1;
@@ -596,15 +836,113 @@ void huanzhu() {
 	}
 }
 
+//偷梁换柱大法2222
+void huanzhu2() {
+	for (int i = 0;i < 9;i++) {
+		rrr[i] = r[i];
+		uuu[i] = u[i];
+		fff[i] = f[i];
+		lll[i] = l[i];
+		ddd[i] = d[i];
+		bbb[i] = b[i];
+	}
+}
+
+//偷梁换柱大法3333
+void huanzhu3() {
+	for (int i = 0;i < 9;i++) {
+		rr1[i] = r[i];
+		uu1[i] = u[i];
+		ff1[i] = f[i];
+		ll1[i] = l[i];
+		dd1[i] = d[i];
+		bb1[i] = b[i];
+	}
+}
+
+//判断填色是否正确
+int tianse() {
+	int k = 1;
+	for (int i = 1;i <= 6;i++) {
+		int j = -1;
+		if (i <= 2) {
+			j = i + 3;
+		}
+		else {
+			j = i - 3;
+		}
+		if (f[5] == i && (r[3] == i || r[3] == j)) {
+			k = 0;
+		}
+		if (f[1] == i && (u[7] == i || u[7] == j)) {
+			k = 0;
+		}
+		if (f[3] == i && (l[5] == i || l[5] == j)) {
+			k = 0;
+		}
+		if (f[7] == i && (d[1] == i || d[1] == j)) {
+			k = 0;
+		}
+		if (f[0] == i && (u[6] == i || u[6] == j || l[2] == i || l[2] == j)) {
+			k = 0;
+		}
+		if (f[2] == i && (u[8] == i || u[8] == j || r[0] == i || r[0] == j)) {
+			k = 0;
+		}
+		if (f[6] == i && (l[8] == i || l[8] == j || d[0] == i || d[0] == j)) {
+			k = 0;
+		}
+		if (f[8] == i && (r[6] == i || r[6] == j || d[2] == i || d[2] == j)) {
+			k = 0;
+		}
+	}
+	return k;
+}
+
+//画箭头
+void rjian() {
+	setfillcolor(RGB(195, 195, 195));
+	setlinecolor(WHITE);
+	setlinestyle(PS_SOLID, 5);
+	POINT pts[] = { {89+286, 395}, {160+286, 252},  {232+286,395},{184+286,395},{184+286,681},{ 137+286,681} ,{137+286,395} };
+	fillpolygon(pts, 7);
+}
+
+void ujian() {
+	setfillcolor(RGB(195, 195, 195));
+}
+
+void fjian() {
+	setfillcolor(RGB(195, 195, 195));
+}
+
+void ljian() {
+	setfillcolor(RGB(195, 195, 195));
+	setfillcolor(RGB(195, 195, 195));
+	setlinecolor(WHITE);
+	setlinestyle(PS_SOLID, 5);
+	POINT pts[] = { {89, 395+143}, {160, 252+143*3},  {232,395+143},{184,395+143},{184,681-143*3},{137,681-143*3} ,{137,395+143} };
+	fillpolygon(pts, 7);
+}
+
+void djian() {
+	setfillcolor(RGB(195, 195, 195));
+}
+
+void bjian() {
+	setfillcolor(RGB(195, 195, 195));
+
+}
+
 //当然是主函数啦
 int main() {
-	int k = 0,huanyuan=0,daluan=0,yibu=0,woc=0;
+	int k = 0,huanyuan=0,daluan=0,yibu=0,woc=0,color=-1;
 	initgraph(1440, 780);
 	BeginBatchDraw();
 	for (;;) {
 		shubiao = GetMouseMsg();
 		//判断是否还原
-		if (daluan != 0 && huanyuan == 1) {
+		if (daluan != 0 && huanyuan == 1 && k == 1) {
 			settextcolor(WHITE);
 			cleardevice();
 			settextstyle(300, 0, _T("Consolas"));
@@ -614,26 +952,58 @@ int main() {
 				huanyuan = 0;
 			}
 		}
+		//判断填色
+		if (!tianse() && k == 2) {
+			settextcolor(WHITE);
+			cleardevice();
+			settextstyle(150, 0, _T("Consolas"));
+			outtextxy(0 + (1440 - textwidth("你的颜色填错了")) / 2, 0 + (780 - textheight("你的颜色填错了")) / 2, "你的颜色填错了");
+			if (shubiao.uMsg == WM_LBUTTONDOWN) {
+				for (int i = 0;i < 9;i++) {
+					r[i] = rr1[i];
+					u[i] = uu1[i];
+					l[i] = ll1[i];
+					d[i] = dd1[i];
+					b[i] = bb1[i];
+					if (i == 3) {
+						i++;
+					}
+				}
+				for (int i = 0;i < 9;i++) {
+					f[i] = -1;
+					if (i == 3) {
+						i++;
+					}
+				}
+			}
+		}
+		if (shubiao.uMsg == WM_LBUTTONDOWN && (k == 1 || k == 2)) {
+			if (41 < shubiao.x && shubiao.x < 41 + 100 && 41 < shubiao.y && shubiao.y < 41 + 50) {
+				k = 0;
+			}
+		}
 		if (shubiao.uMsg == WM_LBUTTONDOWN&&k==0) {
 			if (200 < shubiao.x && shubiao.x < 200 + 1040 && 100 < shubiao.y && shubiao.y < 100 + 240) {
 				k = 1;
+				for (int i = 0;i < 9;i++) {
+					r[i] = rrr[i];
+					u[i] = uuu[i];
+					f[i] = fff[i];
+					l[i] = lll[i];
+					d[i] = ddd[i];
+					b[i] = bbb[i];
+				}
 			}
 			if (200 < shubiao.x && shubiao.x < 200 + 1040 && 440 < shubiao.y && shubiao.y < 440 + 240) {
 				k = 2;
 				for (int i = 0;i < 9;i++) {
-					r[i] = -1;
-					u[i] = -1;
-					f[i] = -1;
-					l[i] = -1;
-					d[i] = -1;
-					b[i] = -1;
+					r[i] = rr1[i];
+					u[i] = uu1[i];
+					f[i] = ff1[i];
+					l[i] = ll1[i];
+					d[i] = dd1[i];
+					b[i] = bb1[i];
 				}
-				r[4] = 1;
-				u[4] = 2;
-				f[4] = 3;
-				l[4] = 4;
-				d[4] = 5;
-				b[4] = 6;
 			}
 		}
 		if (shubiao.uMsg == WM_LBUTTONDOWN&&k==1) {
@@ -777,7 +1147,7 @@ int main() {
 			//一键打乱
 			else if (1030 < shubiao.x && shubiao.x < 1130 && 708 -19 < shubiao.y && shubiao.y < 758 - 19 ) {
 				huanzhu();
-				for (int i = 0;i < 114514;i++) {
+				for (int i = 0;i < 1000;i++) {
 					int random = (rand() % 6) + 1;
 					if (random == 1) R();
 					else if (random == 2) U();
@@ -789,6 +1159,7 @@ int main() {
 				daluan++;
 				yibu = 29;
 			}
+			//撤销
 			else if (1210 < shubiao.x && shubiao.x < 1310 && 708 - 19 < shubiao.y && shubiao.y < 758 - 19) {
 				if (yibu == 1) {
 					R3();
@@ -900,11 +1271,102 @@ int main() {
 				}
 				yibu = 0;
 			}
+			huanzhu2();
+		}
+		if (shubiao.uMsg == WM_LBUTTONDOWN && k == 2) {
+			if (89< shubiao.x && shubiao.x <89+143 && 252< shubiao.y && shubiao.y <252+143 ) {
+				f[0] = color;
+			}
+		    else if (232 < shubiao.x && shubiao.x < 232 + 143 && 252 < shubiao.y && shubiao.y < 252 + 143) {
+				f[1] = color;
+			}
+			else if (375 < shubiao.x && shubiao.x < 375 + 143 && 252 < shubiao.y && shubiao.y < 252 + 143) {
+				f[2] = color;
+			}
+			else if (89 < shubiao.x && shubiao.x < 89 + 143 && 395 < shubiao.y && shubiao.y < 395 + 143) {
+				f[3] = color;
+			}
+			else if (375 < shubiao.x && shubiao.x < 375 + 143 && 395 < shubiao.y && shubiao.y < 395 + 143) {
+				f[5] = color;
+			}
+			else if (89 < shubiao.x && shubiao.x < 89 + 143 && 538 < shubiao.y && shubiao.y < 538 + 143) {
+				f[6] = color;
+			}
+			else if (232 < shubiao.x && shubiao.x < 232 + 143 && 538 < shubiao.y && shubiao.y < 538 + 143) {
+				f[7] = color;
+			}
+			else if (375 < shubiao.x && shubiao.x < 375 + 143 && 538 < shubiao.y && shubiao.y < 538 + 143) {
+				f[8] = color;
+			}
+			//
+			if (850 < shubiao.x && shubiao.x < 950 && 60 - 19 < shubiao.y && shubiao.y < 110 - 19) {
+				x();
+			}
+			else if (1030 < shubiao.x && shubiao.x < 1130 && 60 - 19 < shubiao.y && shubiao.y < 110 - 19) {
+				y();
+			}
+			else if (1210 < shubiao.x && shubiao.x < 1310 && 60 - 19 < shubiao.y && shubiao.y < 110 - 19) {
+				z();
+			}
+			//
+			else if (850 < shubiao.x && shubiao.x < 950 && 132 - 19 < shubiao.y && shubiao.y < 182 - 19) {
+				if (rcolor > 0) {
+					color = 1;
+				}
+				else {
+					color = -1;
+				}
+			}
+			else if (1030 < shubiao.x && shubiao.x < 1130 && 132 - 19 < shubiao.y && shubiao.y < 182 - 19) {
+				if (ucolor > 0) {
+					color = 2;
+				}
+				else {
+					color = -1;
+				}
+			}
+			else if (1210 < shubiao.x && shubiao.x < 1310 && 132 - 19 < shubiao.y && shubiao.y < 182 - 19) {
+				if (fcolor > 0) {
+					color = 3;
+				}
+				else {
+					color = -1;
+				}
+			}
+			else if (850 < shubiao.x && shubiao.x < 950 && 204 - 19 < shubiao.y && shubiao.y < 254 - 19) {
+				if (lcolor > 0) {
+					color = 4;
+				}
+				else {
+					color = -1;
+				}
+			}
+			else if (1030 < shubiao.x && shubiao.x < 1130 && 204 - 19 < shubiao.y && shubiao.y < 254 - 19) {
+				if (dcolor > 0) {
+					color = 5;
+				}
+				else {
+					color = -1;
+				}
+			}
+			else if (1210 < shubiao.x && shubiao.x < 1310 && 204 - 19 < shubiao.y && shubiao.y < 254 - 19) {
+				if (bcolor > 0) {
+					color = 6;
+				}
+				else {
+					color = -1;
+				}
+			}
+			huanzhu3();
+		}
+		if ((color == 1 && rcolor == 0)||(color == 2 && ucolor == 0)|| (color == 3 && fcolor == 0) || (color == 4 && lcolor == 0) || (color == 5 && dcolor == 0) || (color == 6 && bcolor == 0)) {
+			color = -1;
 		}
 		if (panduanhuanyuan() && daluan==1) {
 			huanyuan = 1;
 		}
 		if (k == 0) {
+			cleardevice();
 			hua666();
 		}
 		else if (k == 1&&!(daluan==1&&huanyuan==1)) {
@@ -914,11 +1376,12 @@ int main() {
 			huahua(89,252, f);
 			huahuahua();
 		}
-		else if (k == 2) {
+		else if (k == 2&&tianse()) {
 			cleardevice();
 			huahua1(242, 99, u);
 			huahua2(518, 252, r);
 			huahua(89, 252, f);
+			hua2();
 		}
 		FlushBatchDraw();
 	}
